@@ -6,9 +6,9 @@ class IndexController {
             message: "Home Page!"
         });
     }
-    public static about = (req: Request, res: Response, next: any) => {
-        res.json({
-            message: "About Page!"
+    public static health = (req: Request, res: Response, next: any) => {
+        res.status(200).json({
+            message: 'pong'
         });
     }
 }
