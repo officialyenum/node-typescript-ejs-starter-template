@@ -16,6 +16,7 @@ const extractJWT = (req: Request, res: Response, next: NextFunction) => {
                     error
                 });
             } else {
+                Logging.info(`${NAMESPACE} : Validating ${decoded}`);
                 res.locals.jwt = decoded;
                 next();
             }

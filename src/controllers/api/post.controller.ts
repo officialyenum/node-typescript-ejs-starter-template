@@ -5,6 +5,7 @@ import Post from '../../models/Post';
 class PostController {
     public static index = async (req: Request, res: Response, next: NextFunction) => {
         return Post.find()
+            .select('-__v')
             .populate('author', '-__v -password')
             .exec()
             .then((posts) => res.status(200).json({ posts }))
@@ -26,6 +27,7 @@ class PostController {
     public static show = (req: Request, res: Response, next: NextFunction) => {
         const postId = req.params.id;
         return Post.findById(postId)
+            .select('-__v')
             .populate('author', '-__v -password')
             .exec()
             .then((post) => (post ? res.status(200).json({ post }) : res.status(404).json({ message: 'Post not found' })))
