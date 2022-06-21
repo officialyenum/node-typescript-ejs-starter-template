@@ -5,6 +5,8 @@ import User from '../../models/User';
 class UserController {
     public static index = async (req: Request, res: Response, next: NextFunction) => {
         return User.find()
+            .select('-password')
+            .exec()
             .then((users) => res.status(200).json({ users }))
             .catch((err) => res.status(500).json({ err }));
     };
@@ -24,6 +26,8 @@ class UserController {
     public static show = (req: Request, res: Response, next: NextFunction) => {
         const userId = req.params.id;
         return User.findById(userId)
+            .select('-password')
+            .exec()
             .then((user) => (user ? res.status(200).json({ user }) : res.status(404).json({ message: 'User not found' })))
             .catch((err) => res.status(500).json({ err }));
     };

@@ -15,16 +15,16 @@ export const ValidateSchema = (schema: ObjectSchema) => {
                 message: err
             });
         }
-    }
-}
+    };
+};
 
 export const Schemas = {
     user: {
         create: Joi.object<IUser>({
-            name: Joi.string().required()
+            username: Joi.string().required()
         }),
         update: Joi.object<IUser>({
-            name: Joi.string().required()
+            username: Joi.string().required()
         })
     },
     post: {

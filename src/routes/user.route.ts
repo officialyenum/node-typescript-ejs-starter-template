@@ -5,7 +5,6 @@ import UserController from '../controllers/api/user.controller';
 const router = Router();
 
 /** Set up your api routes here */
-
 // User routes
 router.get('/', UserController.index);
 router.post('/', ValidateSchema(Schemas.user.create),UserController.create);

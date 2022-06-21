@@ -1,19 +1,24 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IUser {
-    name: string;
+    username: string;
+    password: string;
 }
 
 export interface IUserModel extends Document, IUser {}
 
 const UserSchema: Schema = new Schema(
     {
-        name: {
+        username: {
+            type: String,
+            required: true
+        },
+        password: {
             type: String,
             required: true
         }
     },
-    { versionKey: false }
+    { timestamps: true }
 );
 
 export default mongoose.model<IUserModel>('User', UserSchema);
